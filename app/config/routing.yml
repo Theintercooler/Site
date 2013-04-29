@@ -1,0 +1,7 @@
+graphox_blog:
+    resource: "@GraphoxBlogBundle/Resources/config/routing.yml"
+    prefix:   /
+
+graphox_user:
+    resource: "@GraphoxUserBundle/Resources/config/routing.yml"
+    prefix:   /

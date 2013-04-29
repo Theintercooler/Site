@@ -1,0 +1,150 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Contact{% endblock%}
+
+{% form_theme form "BcBootstrapBundle:Form:form_div_layout.html.twig" %}
+{#
+
+{% form_theme form _self %}
+
+{% block captcha_widget %}
+{% spaceless %}
+<div class="control">
+    <img class="thumbnail" src="{{ captcha_code }}" title="captcha" width="{{ captcha_width }}" height="{{ captcha_height }}" />
+    <div>
+    {{"Please enter the text above:"|trans}}
+        </div>
+    {{ form_widget(form) }}
+    </div>
+{% endspaceless %}
+{% endblock %}
+
+{% block field_label %}
+{% spaceless %}
+    <label class="{{class|e}} control-label" for="{{id|e}}">{{name|humanize|e}}</label>
+{% endspaceless %}
+{% endblock field_label %}
+
+{% block field_errors %}
+{% spaceless %}
+    <span class="help-inline">
+        {% if errors|length > 0 %}
+            {% for error in errors %}
+                {{ error.messageTemplate|trans(error.messageParameters, 'validators') }}<br />
+            {% endfor %}
+        {% endif %}
+        </span>
+{% endspaceless %}
+{% endblock field_errors %}
+
+{% block field_row %}
+        <div class="control-group{% if errors|length > 0 %} error{% endif %}">
+        {{ form_label(form, label, {class:"control-label"}) }}
+                <div class="controls">
+                {% set class = '' %}
+            {% if errors|length > 0 %}
+                {% set class = 'error' %}
+            {% endif %}
+            {{ form_widget(form, { 'attr': { 'class': class } }) }}
+                {{ form_errors(form) }}
+                    </div>
+                </div>
+
+{% endblock field_row %} #}
+
+{% block body %}
+
+
+
+
+<header>
+    <h1>Contact Graphox</h1>
+</header>
+
+                {% if app.session.hasFlash('graphox.blog.contact-success') %}
+<div class="alert alert-success">
+                        {{ app.session.flash('graphox.blog.contact-success') }}
+    </div>
+                {% endif %}
+
+                {% if app.session.hasFlash('graphox.blog.contact-error') %}
+    <div class="alert alert-error">
+                            {{ app.session.flash('graphox.blog.contact-error') }}
+        </div>
+            {% endif %}
+
+
+        <div class="row-fluid">
+            <section class="span8">
+                <h1 id="contact_us"><small>Directly contact us</small></h1>
+                <p>
+                    You may use this form to contact us directly.
+                </p>
+                <form action="{{ path('graphox_blog_page_contact') }}" method="post" {{ form_enctype(form) }} class="form-horizontal">
+        {{ form_errors(form) }}
+
+        {{ form_row(form.name) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.subject) }}
+        {{ form_row(form.body) }}
+
+
+        {{ form_rest(form) }}
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                            <input type="submit" class="btn btn-primaryt" value="Submit" />
+                        </div>
+
+                    </form>
+                </section>
+                <section class="span4 last">
+                    <article>
+                        <h1 id="contact_info"><small>Contact information</small></h1>
+                        <address>
+                            <strong>Graphox, Org.</strong><br>
+                            314 Somewhere Rainbow, Over 159<br>
+                            Here Orthere, AB 265359<br>
+                            <abbr title="Phone">P:</abbr> (123) 456-7890
+                        </address>
+
+                    </article>
+                    <section>
+                        <h1 id="contact_requests"><small>Contact requests</small></h1>
+                                        {% for enquiry in enquiries %}
+                        <article class="well">
+                            <header class="clearfix">
+                                <h2 class="pull-left"><small>{{enquiry.subject|e}}</small></h2>
+                                <nav class="pull-right btn-toolbar">
+                                    <div class="btn-group">
+
+                                        <a href="{{url("graphox_blog_page_contact_delete", {"id": enquiry.id})}}" class="btn" title="{{"Delete enquery"|trans|e}}">
+                                            <i class="icon-trash"></i>
+                                        </a>
+
+                                    </div>
+                                </nav>
+                            </header>
+                            <dl class="dl-horizontal">
+                                <dt>{{"Name"|trans|e}}</dt>
+                                <dd>{{enquiry.name|e}}</dd>
+
+                                <dt>{{"Email"|trans|e}}</dt>
+                                <dd><a href="mailto:{{enquiry.email|e}}">{{enquiry.email|e}}</a></dd>
+
+                                <dt>{{"Time created"|trans|e}}</dt>
+                                <dd>{{enquiry.createDate|date|e}}</dd>
+                            </dl>
+
+                            <pre>
+            {{enquiry.subject|e}}
+                                </pre>
+
+                            </article>
+                                        {% endfor %}
+                        </section>
+
+                    </section>
+                </div>
+{% endblock %}
+

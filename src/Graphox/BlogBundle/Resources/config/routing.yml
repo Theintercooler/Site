@@ -1,0 +1,30 @@
+graphox_blog_page:
+    pattern:  /
+    defaults: { _controller: GraphoxBlogBundle:Page:index }
+    requirements:
+        _method:  GET
+
+graphox_blog_page_about:
+    pattern:  /about
+    defaults: { _controller: GraphoxBlogBundle:Page:about }
+    requirements:
+        _method:  GET
+
+graphox_blog_page_contact:
+    pattern:  /contact
+    defaults: { _controller: GraphoxBlogBundle:Page:contact }
+    requirements:
+        _methods: GET|POST
+
+graphox_blog_page_contact_show:
+    pattern:  /contact/show/{id}
+    defaults: { _controller: GraphoxBlogBundle:Page:showContact }
+    requirements:
+        _methods: GET
+
+graphox_blog_page_contact_delete:
+    pattern:  /contact/delete/{id}
+    defaults: { _controller: GraphoxBlogBundle:Page:deleteContact }
+    requirements:
+        _methods: GET|POST
+

@@ -1,0 +1,7 @@
+From: {{enquiry.name|replace({"\n" : "\\n"} )}}<{{enquiry.email|replace({"\n" : "\\n"} )}}>
+Subject: {{enquiry.subject|replace({"\n" : "\\n"} )}}
+date: {{enquiry.createDate|date()|replace({"\n" : "\\n"} ) }}
+
+{{enquiry.body}}
+
+{{url('graphox_blog_page_contact_show', {'id' : enquiry.id|number_format})}}

@@ -1,0 +1,6 @@
+{#% trans %#}
+Welcome {{ user.username  }}, please activate your account.
+You can do this by clicking on the following link:
+{#% endtrans %#}
+{{url('graphox_user_user_activate', {'key' : user.primaryEmail.activationKey})}}
+

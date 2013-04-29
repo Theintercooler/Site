@@ -1,0 +1,73 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}
+    {% if enquiry is empty %}
+        {{"Unkow enquiry"|trans|e}}
+        {%else%}
+        {{enquiry.subject|e}}
+    {% endif %}
+{% endblock%}
+
+{% block body %}
+{% if enquiry is empty %}
+<div class="hero-unit">
+    <h1>{{"Enquiry not found!"|trans|e}}</h1>
+    <p>{{"You have requested an unkown enquiry."|trans|e}}</p>
+    <p>
+        <a class="btn btn-primary btn-large" href="{{path("graphox_blog_page_contact")}}" >
+            {{"Back to the index ->"|trans|e}}
+            </a>
+        </p>
+    </div>
+{% else %}
+    <h1>{{enquiry.subject|e}}</h1>
+
+    <div class="row-fluid">
+        <section class="span8">
+
+            <p>
+            <pre>
+        {{enquiry.subject|e}}
+                </pre>
+                </p>
+            </section>
+            <aside class="span4">
+                <section>
+                    <h2><small>{{"Details"|trans|e}}</small></h2>
+                    <dl class="dl-horizontal">
+                        <dt>{{"Name"|trans|e}}</dt>
+                        <dd>{{enquiry.name|e}}</dd>
+
+                        <dt>{{"Email"|trans|e}}</dt>
+                        <dd><a href="mailto:{{enquiry.email|e}}">{{enquiry.email|e}}</a></dd>
+
+                        <dt>{{"Time created"|trans|e}}</dt>
+                        <dd>{{enquiry.createDate|date|e}}</dd>
+                    </dl>
+                </section>
+                <nav>
+                    <h2><small>{{"Actions"|trans|e}}</small></h2>
+
+                    <ul class="nav nav-list">
+                        <li class="nav-header">Enquiry</li>
+                        <li class="active"><a href="#">View</a></li>
+                        <li><a href="{{url("graphox_blog_page_contact_delete", {"id": enquiry.id})}}">Delete</a></li>
+
+                        <li><a href="#">Reply (not implemented)</a></li>
+
+                        <li class="nav-header">User actions</li>
+                        <li><a href="#">Ban ip (not implemented)</a></li>
+                        <li><a href="#">Ban email (not implemented)</a></li>
+                    </ul>
+                </nav>
+
+            </aside>
+        </div>
+
+
+
+{% endif %}
+{% endblock %}
+
+
+

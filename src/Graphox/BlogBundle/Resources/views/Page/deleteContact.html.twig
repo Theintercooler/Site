@@ -1,0 +1,55 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}
+        {{enquiry.subject|e}}
+{% endblock%}
+
+{% block body %}
+<h1>{{"Delete"|trans}} {{enquiry.subject|e}} (#{{enquiry.id|e}})</h1>
+
+<div class="row-fluid">
+    <section class="span8">
+
+        <div class="well well-large">
+            <h2><small>{{"Are you sure you want to delete this enquiry?"|trans|e}}</small></h2>
+            <p>{{"It will be gone forever. And that's a really long time, so be careful."|trans|e}}</p>
+
+            <form action="{{ path('graphox_blog_page_contact_delete', {'id' : enquiry.id})}}" method="post" {{ form_enctype(form) }}>
+                <div class="pull-left">
+                    {{ form_widget(form) }}
+                    </div>
+
+                    <input class="btn btn-primary pull-right clearfix" type="submit" value="{{"Delete enquery"|trans|e}}" />
+                </form>
+
+            </div>
+
+
+        </section>
+        <aside class="span4">
+            <section>
+
+            </section>
+            <nav>
+                <h2><small>{{"Actions"|trans|e}}</small></h2>
+
+                <ul class="nav nav-list">
+                    <li class="nav-header">Enquiry</li>
+                    <li><a href="{{url("graphox_blog_page_contact_show", {"id": enquiry.id})}}">View</a></li>
+                    <li class="active"><a href="#">Delete</a></li>
+                    <li><a href="#">Reply (not implemented)</a></li>
+
+                    <li class="nav-header">User actions</li>
+                    <li><a href="#">Ban ip (not implemented)</a></li>
+                    <li><a href="#">Ban email (not implemented)</a></li>
+                </ul>
+            </nav>
+
+        </aside>
+    </div>
+
+
+{% endblock %}
+
+
+

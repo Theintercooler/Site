@@ -1,0 +1,12 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}GraphoxUserBundle:User:activate{% endblock %}
+
+{% block body %}
+
+{% if app.session.flashBag.has("graphox_user.user.register.success") %}
+<div class="alert alert-success">
+    {{ app.session.flashBag.get("graphox_user.user.register.success") }}
+    </div>
+{% endif %}
+{% endblock %}

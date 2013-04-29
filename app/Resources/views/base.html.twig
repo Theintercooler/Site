@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        <section>
+            <header>
+                <div class="top">
+                    {% block top %}
+
+                        <div class="navbar">
+                            <div class="navbar-inner">
+                                <a class="brand" href="#">Title</a>
+                        {% block navigation %}
+                                <nav>
+                                    <ul class="nav">
+                                        <li><a href="{{ path('graphox_blog_page') }}">Home</a></li>
+                                        <li><a href="{{ path('graphox_blog_page_about') }}">About</a></li>
+                                        <li><a href="{{ path('graphox_blog_page_contact') }}">Contact</a></li>
+                                    </ul>
+                                </nav>
+{% endblock %}
+                                {# { knp_menu_render('GraphoxCoreBundle:Builder:mainMenu', {'nav_type': 'navbar'}) } #}
+                            </div>
+                        </div>
+                    {% endblock %}
+
+                    </div>
+
+                </header>
+
+                <section class="container main-col">
+                    {% block body %}{% endblock %}
+                    </section>
+
+
+                    <aside class="sidebar">
+                {% block sidebar %}{% endblock %}
+                        </aside>
+
+                        <div id="footer">
+                {% block footer %}{% endblock %}
+                            </div>
+                        </section>
+
+
+
+        {% block javascripts %}{% endblock %}
+                        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+                        <script>window.jQuery || document.write('<script src="{{ asset('js/jquery.js') }}"><\/script>')</script>
+                        <script src="{{ asset('js/bootstrap.js') }}"></script>
+                    </body>
+                </html>
+

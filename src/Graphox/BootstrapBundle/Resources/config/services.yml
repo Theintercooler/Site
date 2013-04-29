@@ -1,0 +1,7 @@
+parameters:
+#    graphox_bootstrap.example.class: Graphox\BootstrapBundle\Example
+
+services:
+#    graphox_bootstrap.example:
+#        class: %graphox_bootstrap.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

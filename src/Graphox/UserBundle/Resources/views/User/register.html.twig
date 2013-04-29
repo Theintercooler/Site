@@ -1,0 +1,28 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Register{% endblock %}
+
+
+{% block body %}
+
+
+{% if app.session.hasFlash("graphox_user.user.register.error") %}
+<div class="alert alert-error">
+    {{ app.session.getFlash("graphox_user.user.register.error") }}
+    </div>
+{% endif %}
+
+    <form class="form-horizontal" action="{{ path('graphox_user_user_register')}}" method="post" {{ form_enctype(form) }}>
+{% set attr = {
+    "form_type": 'horizontal'
+} %}
+
+        {{ form_row(form.user.username, attr) }}
+{{ form_row(form.user.email.email, attr|merge({"label" : "Email"|trans})) }}
+{{ form_widget(form.user, attr) }}
+{{ form_widget(form, attr) }}
+
+
+            <input type="submit" />
+        </form>
+{% endblock %}

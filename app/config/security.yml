@@ -1,0 +1,38 @@
+jms_security_extra:
+    secure_all_services: false
+    expressions: true
+
+security:
+    encoders:
+        Graphox\UserBundle\Entity\User:
+             id: graphox_user.security.phpass_encoder
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+      graphox_users:
+         id: graphox_user.security.user_provider
+
+
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        login:
+          pattern: ^/user/login$
+          security: false
+
+        secured_area:
+            pattern: ^/
+            form_login:
+                check_path: graphox_user_user_login_check
+                login_path: graphox_user_user_login
+            logout:
+                path: graphox_user_user_logout
+                #Todo: point to timeline
+                target: graphox_user_user_login
+
+    access_control:
+        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }

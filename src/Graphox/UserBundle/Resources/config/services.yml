@@ -1,0 +1,18 @@
+parameters:
+#    graphox_user.example.class: Graphox\UserBundle\Example
+  graphox_user.security.phpass_encoder.class: Graphox\UserBundle\Security\Service\PhpassEncoder
+  graphox_user.security.user_provider.class: Graphox\UserBundle\Security\UserProvider\EntityUserProvider
+  graphox_user.security.user_provider.repository: GraphoxUserBundle:User
+  graphox_user.register.email_from: "no-reply@localhost"
+
+services:
+  graphox_user.security.phpass_encoder:
+    class: "%graphox_user.security.phpass_encoder.class%"
+
+  graphox_user.security.user_provider:
+    class: "%graphox_user.security.user_provider.class%"
+    arguments: ["@graphox_neo4j.graph_manager", "%graphox_user.security.user_provider.repository%"]
+
+#    graphox_user.example:
+#        class: %graphox_user.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

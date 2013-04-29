@@ -1,0 +1,19 @@
+Graphox\BlogBundle\Entity\Enquiry:
+    properties:
+        name:
+            - NotBlank: ~
+            - Length:
+                min: 3
+        email:
+            - NotBlank: ~
+            - Length:
+                min: 5
+            - Email: ~
+        subject:
+            - NotBlank: ~
+            - Length:
+                min: 3
+        body:
+            - NotBlank: ~
+            - Length:
+                min: 5

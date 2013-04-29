@@ -1,0 +1,11 @@
+graphox_user_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: GraphoxUserBundle:Default:index }
+user:
+    resource: "@GraphoxUserBundle/Controller/UserController.php"
+    prefix:   /user
+    type:     annotation
+timeline:
+    resource: "@GraphoxUserBundle/Controller/TimelineController.php"
+    prefix:   /user
+    type:     annotation

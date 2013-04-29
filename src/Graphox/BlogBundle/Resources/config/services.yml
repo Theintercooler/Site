@@ -1,0 +1,8 @@
+parameters:
+    graphox_blog.contact.destination: "admin@localhost"
+#    graphox_blog.example.class: Graphox\BlogBundle\Example
+
+services:
+#    graphox_blog.example:
+#        class: %graphox_blog.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

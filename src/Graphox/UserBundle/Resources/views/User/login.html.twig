@@ -1,0 +1,39 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}GraphoxUserBundle:User:login{% endblock %}
+
+{% block body %}
+{% if app.session.flashBag.has("graphox_user.user.activate.success") %}
+<div class="alert alert-success">
+    {{ app.session.flashBag.get("graphox_user.user.activate.success") }}
+    </div>
+{% endif %}
+
+    <article>
+        <h1>Login</h1>
+
+    {% if error %}
+        <div class="alert alert-error">{{ error.message }}</div>
+    {% endif %}
+
+        <form action="{{ path("graphox_user_user_login_check") }}" method="post" id="login">
+            <div>
+                <label for="username">Username</label>
+                <input type="text" id="username" name="_username" value="{{ last_username }}" />
+            </div>
+
+            <div>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="_password" />
+            </div>
+
+            <button type="submit" class="sf-button">
+                <span class="border-l">
+                    <span class="border-r">
+                        <span class="btn-bg">Login</span>
+                    </span>
+                </span>
+            </button>
+        </form>
+    </article>
+{% endblock %}
